@@ -1,21 +1,23 @@
 import React from 'react';
 import { Button as BSButton } from 'reactstrap';
 
-type ButtonProps = {
-  primary?: boolean,
-  outlined?: boolean,
-  raised?: boolean,
-  linking?: boolean,
-  disabled?: boolean,
-  children: any,
+interface IButtonProps {
+  primary?: boolean;
+  outlined?: boolean;
+  raised?: boolean;
+  linking?: boolean;
+  disabled?: boolean;
+  onClick?: ((event: React.MouseEvent<any, MouseEvent>) => void) | undefined;
+  children: any;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<IButtonProps> = ({
   primary = false,
   outlined = false,
   raised = false,
   linking = false,
   disabled = false,
+  onClick,
   children,
 }) => {
   let colorProp = 'secondary';
@@ -33,10 +35,11 @@ const Button: React.FC<ButtonProps> = ({
       outline={outlined}
       color={colorProp}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </BSButton>
   );
-}
+};
 
 export default Button;

@@ -25,7 +25,10 @@
     ],
     "sourceMap": true,
     "jsx": "preserve",
-    "rootDir": "src",
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
