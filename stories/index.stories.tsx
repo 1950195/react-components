@@ -7,12 +7,7 @@ import GlobalStyle from '../src/GlobalStyle';
 
 import Button from '../src/Button';
 
-const GlobalStyleDecorator = (storyFn: any) => (
-  <Fragment>
-    <GlobalStyle />
-    {storyFn()}
-  </Fragment>
-);
+const GlobalStyleDecorator = (storyFn: any) => <Fragment><GlobalStyle />{storyFn()}</Fragment>;
 
 addDecorator(GlobalStyleDecorator);
 
