@@ -2,14 +2,14 @@ import React from 'react';
 import { Button as BSButton } from 'reactstrap';
 
 export interface IButtonProps {
-  type?: string;
+  type?: 'primary' | 'raised' | 'linking' | 'outlined';
   disabled?: boolean;
   onClick?: ((event: React.MouseEvent<any, MouseEvent>) => void) | undefined;
   children: any;
 }
 
 export const Button = ({
-  type = '',
+  type,
   disabled = false,
   onClick,
   children,
