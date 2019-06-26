@@ -1,38 +1,32 @@
 import React from 'react';
 import { Button as BSButton } from 'reactstrap';
 
-interface IButtonProps {
-  primary?: boolean;
-  outlined?: boolean;
-  raised?: boolean;
-  linking?: boolean;
+export interface IButtonProps {
+  type?: string;
   disabled?: boolean;
   onClick?: ((event: React.MouseEvent<any, MouseEvent>) => void) | undefined;
   children: any;
 }
 
-const Button: React.FC<IButtonProps> = ({
-  primary = false,
-  outlined = false,
-  raised = false,
-  linking = false,
+export const Button = ({
+  type = '',
   disabled = false,
   onClick,
   children,
-}) => {
+}: IButtonProps) => {
   let colorProp = 'secondary';
 
-  if (primary) {
+  if (type === 'primary') {
     colorProp = 'primary';
-  } else if (raised) {
+  } else if (type === 'raised') {
     colorProp = 'raised';
-  } else if (linking) {
+  } else if (type === 'linking') {
     colorProp = 'link';
   }
 
   return (
     <BSButton
-      outline={outlined}
+      outline={type === 'outlined'}
       color={colorProp}
       disabled={disabled}
       onClick={onClick}

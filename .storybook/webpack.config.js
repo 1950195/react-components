@@ -1,4 +1,4 @@
-module.exports = ({ config, mode }) => {
+module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
@@ -8,15 +8,11 @@ module.exports = ({ config, mode }) => {
           presets: [['react-app', { flow: false, typescript: true }]],
         },
       },
-      {
-        loader: require.resolve('awesome-typescript-loader'),
-      },
-      // Optional
-      {
-        loader: require.resolve('react-docgen-typescript-loader'),
-      },
-    ],
+      require.resolve('react-docgen-typescript-loader'),
+    ]
   });
+
   config.resolve.extensions.push('.ts', '.tsx');
+
   return config;
 };

@@ -43,8 +43,8 @@ export default createGlobalStyle`
   }
 
   body.sb-show-main {
-    #root {
-      padding: 1rem;
+    #story-root {
+      padding: 0 2.5rem;
     }
   }
 `;
