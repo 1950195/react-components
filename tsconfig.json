@@ -17,11 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "outDir": "build/dist",
     "typeRoots": [
-      "./node_modules/@types",
-      "./typings"
+      "node_modules/@types",
+      "typings"
     ],
     "sourceMap": true,
     "jsx": "preserve",
@@ -48,6 +48,7 @@
   ],
   "include": [
     "src",
-    "stories"
+    "stories",
+    "typing"
   ]
 }

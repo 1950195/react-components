@@ -1,3 +1,14 @@
 /* eslint-disable */
 /* tslint:disable */
-export default require('sass-extract-loader?{"plugins":["sass-extract-js"]}!./_variables.scss');
+const { global: vars } = require('sass-extract-loader!./_variables.scss');
+
+export default (name: string) => {
+  const style = vars[name];
+
+  switch(style.type) {
+    case 'SassColor':
+      return style.value.hex;
+    default:
+      return style.value;
+  }
+}
