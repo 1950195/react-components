@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardFooter } from 'reactstrap';
 import styled from 'styled-components';
+import copy from 'copy-to-clipboard';
 
 import { storiesOf } from '@storybook/react';
 
@@ -15,9 +16,11 @@ const Wrapper = styled.div`
 
   > article {
     display: flex;
+    flex-wrap: wrap;
 
     .card {
       width: 5rem;
+      margin: .25rem;
       border: 0 none;
       border-radius: 0;
 
@@ -29,17 +32,16 @@ const Wrapper = styled.div`
         flex: none;
         padding: .125rem .375rem;
         height: 5rem;
+        cursor: copy;
       }
 
       &-title {
-        padding-top: .25rem;
-      }
-
-      &-title {
+        margin: .25rem 0;
         font-size: .75rem;
       }
 
       &-text {
+        margin: .125rem 0;
         font-size: .625rem;
       }
 
@@ -92,7 +94,7 @@ storiesOf('Color', module)
       <article>
         {grayscaleColors.map(({ title, $v, desc, color }) => (
           <Card key={$v}>
-            <CardBody style={{ backgroundColor: v($v), color }}>
+            <CardBody style={{ backgroundColor: v($v), color }} onClick={() => copy($v)}>
               <CardTitle>{title}</CardTitle>
               <CardText>{v($v)}</CardText>
             </CardBody>
@@ -112,7 +114,7 @@ storiesOf('Color', module)
       <article>
         {primaryColors.map(({ title, $v, desc, color }) => (
           <Card key={$v}>
-            <CardBody style={{ backgroundColor: v($v), color }}>
+            <CardBody style={{ backgroundColor: v($v), color }} onClick={() => copy($v)}>
               <CardTitle>{title}</CardTitle>
               <CardText>{v($v)}</CardText>
             </CardBody>
@@ -132,7 +134,7 @@ storiesOf('Color', module)
       <article>
         {controlColors.map(({ title, $v, desc, color }) => (
           <Card key={$v}>
-            <CardBody style={{ backgroundColor: v($v), color }}>
+            <CardBody style={{ backgroundColor: v($v), color }} onClick={() => copy($v)}>
               <CardTitle>{title}</CardTitle>
               <CardText>{v($v)}</CardText>
             </CardBody>
