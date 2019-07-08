@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { addDecorator, configure } from '@storybook/react';
+import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import GlobalStyle from '../src/GlobalStyle';
+import GlobalStyle from 'style/GlobalStyle';
 import Table from '../src/Table';
 
 const TableComponent = ({ propDefinitions }) => {
@@ -32,4 +32,5 @@ const GlobalStyleDecorator = (storyFn) => <Fragment><GlobalStyle />{storyFn()}</
 
 addDecorator(withInfo({ inline: true, TableComponent }));
 addDecorator(GlobalStyleDecorator);
+addParameters({ options: { showPanel: false } });
 configure(loadStories, module);

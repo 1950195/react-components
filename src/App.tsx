@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardFooter } from 'reactstrap';
 import styled from 'styled-components';
-
-import v from './scss/v';
+import v from 'style/v';
 
 const Wrapper = styled.div`
   display: flex;

@@ -2,21 +2,22 @@ import React from 'react';
 import { Card, CardBody, CardTitle, CardText, CardFooter } from 'reactstrap';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
-
 import { storiesOf } from '@storybook/react';
-
-import v from 'scss/v';
+import v from '../src/style/v';
 
 const Wrapper = styled.div`
-  padding-left: 1rem;
+  margin: 3rem 0 0;
+  border: 1px solid #eee;
 
   > h1 {
-    padding: .5rem 1rem 1rem 0;
+    margin: 1.25rem 2.5rem;
+    border-bottom: 1px solid #eee;
   }
 
   > article {
     display: flex;
     flex-wrap: wrap;
+    padding: 1.25rem 2.5rem;
 
     .card {
       width: 5rem;
@@ -49,6 +50,7 @@ const Wrapper = styled.div`
         flex: 1 1 auto;
         padding: .125rem 0;
         font-size: .5625rem;
+        min-height: 1.875rem;
       }
     }
   }
@@ -87,8 +89,8 @@ const controlColors = [
   { title: 'Kaiju', $v: '$control-kaiju', desc: 'Toggle, Accent', color: 'white' },
 ];
 
-storiesOf('Color', module)
-  .add('Grayscale', () => (
+storiesOf('Global', module)
+  .add('Color', () => (
     <Wrapper>
       <h1>COLORS - GRAYSCALE</h1>
       <article>
@@ -102,14 +104,6 @@ storiesOf('Color', module)
           </Card>
         ))}
       </article>
-    </Wrapper>
-  ), {
-    info: {
-      inline: false,
-    },
-  })
-  .add('Primary', () => (
-    <Wrapper>
       <h1>COLORS - PRIMARY</h1>
       <article>
         {primaryColors.map(({ title, $v, desc, color }) => (
@@ -122,14 +116,6 @@ storiesOf('Color', module)
           </Card>
         ))}
       </article>
-    </Wrapper>
-  ), {
-    info: {
-      inline: false,
-    },
-  })
-  .add('Control', () => (
-    <Wrapper>
       <h1>COLORS - CONTROL</h1>
       <article>
         {controlColors.map(({ title, $v, desc, color }) => (

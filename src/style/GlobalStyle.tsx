@@ -1,6 +1,7 @@
 /* tslint:disable:max-line-length */
 import 'bootstrap-scss/bootstrap.scss';
 import { createGlobalStyle } from 'styled-components';
+import './_font.scss';
 
 export default createGlobalStyle`
   html, body {

@@ -1,0 +1,26 @@
+@mixin font-face($mixin-lib, $mixin-name, $mixin-weight: normal) {
+  font-family: $mixin-lib + '-' + $mixin-name;
+  font-weight: $mixin-weight;
+  font-style: normal;
+  @if $mixin-lib == Roboto {
+    src: url('./font/roboto_condensed/RobotoCondensed-' + $mixin-name+ '.ttf') format('truetype');
+  } @else if $mixin-lib == Lato {
+    src: url('./font/Lato2OFL/Lato-' + $mixin-name + '.ttf') format('truetype');
+  }
+}
+
+$fonts:
+  (Lato Regular)
+  (Lato Bold)
+  (Lato Semibold)
+  (Lato Medium)
+  (Lato Light)
+  (Roboto Regular 400)
+  (Roboto Bold 900)
+  (Roboto Light 700);
+
+@each $name, $url, $weight in $fonts {
+  @font-face {
+    @include font-face($name, $url, $weight);
+  }
+}

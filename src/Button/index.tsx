@@ -41,7 +41,7 @@ const CustomButton = styled(BSButton)`
 `;
 
 export interface IButtonProps {
-  type?: 'primary' | 'raised' | 'linking';
+  color?: 'primary' | 'raised' | 'linking';
   size?: 'lg' | 'sm';
   outlined?: boolean;
   dashed?: boolean;
@@ -51,7 +51,7 @@ export interface IButtonProps {
 }
 
 export const Button = ({
-  type,
+  color,
   size,
   outlined,
   dashed,
@@ -61,7 +61,7 @@ export const Button = ({
 }: IButtonProps) => {
   let colorProp;
 
-  switch (type) {
+  switch (color) {
     case undefined:
       colorProp = 'secondary';
       break;
@@ -72,7 +72,7 @@ export const Button = ({
       colorProp = 'link';
       break;
     default:
-      colorProp = type;
+      colorProp = color;
   }
 
   return (
