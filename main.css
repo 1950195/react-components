@@ -1,3 +1,46 @@
+@font-face {
+  font-family: Lato-Regular;
+  font-style: normal;
+  src: url(static/media/Lato-Regular.3b9b9903.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Lato-Bold;
+  font-style: normal;
+  src: url(static/media/Lato-Bold.eb953203.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Lato-Semibold;
+  font-style: normal;
+  src: url(static/media/Lato-Semibold.3c6cfb1a.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Lato-Medium;
+  font-style: normal;
+  src: url(static/media/Lato-Medium.863b7dcd.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Lato-Light;
+  font-style: normal;
+  src: url(static/media/Lato-Light.90e1d355.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Roboto-Regular;
+  font-weight: 400;
+  font-style: normal;
+  src: url(static/media/RobotoCondensed-Regular.0e1821fd.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Roboto-Bold;
+  font-weight: 900;
+  font-style: normal;
+  src: url(static/media/RobotoCondensed-Bold.52f9b35f.ttf) format("truetype"); }
+
+@font-face {
+  font-family: Roboto-Light;
+  font-weight: 700;
+  font-style: normal;
+  src: url(static/media/RobotoCondensed-Light.5b455543.ttf) format("truetype"); }
+
 
 
 /*# sourceMappingURL=main.css.map*/
