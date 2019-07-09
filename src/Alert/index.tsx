@@ -4,27 +4,30 @@ import styled from 'styled-components';
 import v, { rgba } from 'style/v';
 import Icon from 'Icon';
 
+const getStyle = (color: string) => `
+  border: 1px solid ${v(color)};
+  background: ${rgba(color, .15)};
+  > span svg {
+    color: ${v(color)};
+  }
+`;
+
 const CustomAlert = styled(BSAlert)`
-  white-space: nowrap;
   font-family: ${v('$font-family-roboto')};
   color: ${v('$grayscale-nero')};
 
   &.alert {
     &-success {
-      border: 1px solid ${v('$control-kaiju')};
-      background: ${rgba('$control-kaiju', .15)};
+      ${getStyle('$control-kaiju')};
     }
     &-danger {
-      border: 1px solid ${v('$primary-alizarin')};
-      background: ${rgba('$primary-alizarin', .15)};
+      ${getStyle('$primary-alizarin')};
     }
     &-info {
-      border: 1px solid ${v('$control-pacific')};
-      background: ${rgba('$control-pacific', .15)};
+      ${getStyle('$control-pacific')};
     }
     &-warning {
-      border: 1px solid ${v('$primary-lucis')};
-      background: ${rgba('$primary-lucis', .15)};
+      ${getStyle('$primary-lucis')};
     }
   }
 `;
@@ -53,40 +56,18 @@ export const Alert = ({
   color = 'success',
   fade,
   children,
-}: IAlertProps) => {
-  let colorProp: string = color;
-  let iconColor;
-
-  switch (color) {
-    case 'success':
-      iconColor = v('$control-kaiju');
-      break;
-    case 'error':
-      colorProp = 'danger';
-      iconColor = v('$primary-alizarin');
-      break;
-    case 'info':
-      iconColor = v('$control-pacific');
-      break;
-    case 'warning':
-      iconColor = v('$primary-lucis');
-      break;
-    default:
-  }
-
-  return (
-    <CustomAlert
-      {...{
-        color: colorProp,
-        fade,
-      }}
-    >
-      <IconWrapper>
-        <Icon name={color === 'warning' ? 'exclamation-triangle' : 'info-circle'} color={iconColor} />
-      </IconWrapper>
-      {children}
-    </CustomAlert>
-  );
-};
+}: IAlertProps) => (
+  <CustomAlert
+    {...{
+      color: color === 'error' ? 'danger' : color,
+      fade,
+    }}
+  >
+    <IconWrapper>
+      <Icon name={color === 'warning' ? 'exclamation-triangle' : 'info-circle'} />
+    </IconWrapper>
+    {children}
+  </CustomAlert>
+);
 
 export default Alert;

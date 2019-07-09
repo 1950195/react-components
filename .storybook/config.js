@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import GlobalStyle from 'style/GlobalStyle';
@@ -28,7 +28,7 @@ function loadStories() {
   srcReq.keys().forEach(srcReq);
 }
 
-const GlobalStyleDecorator = (storyFn) => <Fragment><GlobalStyle />{storyFn()}</Fragment>;
+const GlobalStyleDecorator = (storyFn) => <div><GlobalStyle />{storyFn()}</div>;
 
 addDecorator(withInfo({ inline: true, TableComponent }));
 addDecorator(GlobalStyleDecorator);
