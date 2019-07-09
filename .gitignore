@@ -30,3 +30,4 @@ coverage
 *.idea
 /dist
 /storybook-static
+/src
