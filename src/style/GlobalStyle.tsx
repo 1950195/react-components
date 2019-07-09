@@ -28,9 +28,9 @@ export default createGlobalStyle`
 
   body.sb-show-main {
     #root {
-      > div:first-child {
-        > div {
-          > div:first-child {
+      > div:first-of-type {
+        > div:not(#story-root) {
+          > div:first-of-type {
             border: 0 none !important;
           }
         }
@@ -38,7 +38,6 @@ export default createGlobalStyle`
 
       #story-root {
         padding: 0 2.5rem;
-        border-left: 1px solid #eee;
       }
     }
   }
