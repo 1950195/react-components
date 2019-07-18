@@ -1,6 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
-const { global: vars } = require('sass-extract-loader!./_variables.scss');
+const { global: vars } = require('../../server/sass2js!./_variables.scss');
 
 export const rgba = (name: string, alpha: number) => {
   const style = vars[name];

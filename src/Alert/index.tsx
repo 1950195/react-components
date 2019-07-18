@@ -15,6 +15,7 @@ const getStyle = (color: string) => `
 const CustomAlert = styled(BSAlert)`
   font-family: ${v('$font-family-roboto')};
   color: ${v('$grayscale-nero')};
+  border-radius: 0;
 
   &.alert {
     &-success {
