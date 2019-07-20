@@ -37,6 +37,7 @@ export default createGlobalStyle`
       }
 
       #story-root {
+        display: flex;
         padding: 0 2.5rem;
 
         > button ~ button {
