@@ -38,6 +38,14 @@ export default createGlobalStyle`
 
       #story-root {
         padding: 0 2.5rem;
+
+        > button ~ button {
+          margin-left: .5rem;
+        }
+
+        > span ~ span {
+          margin-left: 1.5rem;
+        }
       }
     }
   }
