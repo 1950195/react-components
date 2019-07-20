@@ -1,6 +1,8 @@
 import React from 'react';
 import { Input } from 'reactstrap';
 import styled from 'styled-components';
+
+import Icon from 'Icon';
 import v from 'style/v';
 
 const CustomRadio = styled.span<IRadioProps>`
@@ -8,48 +10,23 @@ const CustomRadio = styled.span<IRadioProps>`
   width: 16px;
   position: relative;
   display: inline-block;
+  border: 1px solid ${v('$grayscale-silverlight')};
   border-radius: 50%;
-  background-color: ${v('$grayscale-silverlight')};
   ${({ disabled }) => disabled
     ? `
       opacity: 0.65;
+      background-color: ${v('$grayscale-haze')};
     `
-    : `
-      cursor: pointer;
-    `}
-  &:before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    margin: 0;
-    border-radius: 50%;
-    ${({ checked }) => checked && `
-      background-color: ${v('$control-pacific')};
-    `}
+    : `cursor: pointer;`
   }
-  &:after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    background-color: ${({ disabled }) => disabled ? v('$grayscale-haze') : v('$grayscale-white')};
-    ${({ checked }) => checked
-      ? `
-        width: 6px;
-        height: 6px;
-        left: 5px;
-        top: 5px;
-      `
-      : `
-        width: 14px;
-        height: 14px;
-        left: 1px;
-        top: 1px;
-      `}
-  }
-  input[type=radio] {
+  ${({ checked }) => checked && `
+    > :first-child {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+    }
+  `}
+  input[type=checkbox] {
     display: none;
   }
 `;
@@ -67,7 +44,10 @@ export const Radio = ({
 }: IRadioProps) => {
   return (
       <CustomRadio {...{ checked, disabled, onChange }}>
-        <Input type="radio" {...{ checked, disabled, onChange }} />
+        {checked && !disabled && (
+          <Icon name="dot-circle" color={v('$control-pacific')} />
+        )}
+        <Input type="checkbox" {...{ checked, disabled, onChange }} />
       </CustomRadio>
   );
 };
