@@ -48,12 +48,12 @@ export const Checkbox = ({
   onChange,
 }: ICheckboxProps) => {
   return (
-      <CustomCheckbox {...{ checked, disabled, onChange }}>
-        {checked && !disabled && (
-          <Icon name="check-square" color={v('$control-pacific')} />
-        )}
-        <Input type="checkbox" {...{ checked, disabled, onChange }} />
-      </CustomCheckbox>
+    <CustomCheckbox {...{ checked, disabled, onChange }}>
+      {checked && !disabled && (
+        <Icon name="check-square" color={v('$control-pacific')} />
+      )}
+      <Input type="checkbox" {...{ checked, disabled, onChange }} />
+    </CustomCheckbox>
   );
 };
 

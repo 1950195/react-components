@@ -26,7 +26,7 @@ const CustomRadio = styled.span<IRadioProps>`
       left: -1px;
     }
   `}
-  input[type=checkbox] {
+  input[type=radio] {
     display: none;
   }
 `;
@@ -43,12 +43,12 @@ export const Radio = ({
   onChange,
 }: IRadioProps) => {
   return (
-      <CustomRadio {...{ checked, disabled, onChange }}>
-        {checked && !disabled && (
-          <Icon name="dot-circle" color={v('$control-pacific')} />
-        )}
-        <Input type="checkbox" {...{ checked, disabled, onChange }} />
-      </CustomRadio>
+    <CustomRadio {...{ checked, disabled, onChange }}>
+      {checked && !disabled && (
+        <Icon name="dot-circle" color={v('$control-pacific')} />
+      )}
+      <Input type="radio" {...{ checked, disabled, onChange }} />
+    </CustomRadio>
   );
 };
 
