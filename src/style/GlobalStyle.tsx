@@ -37,7 +37,6 @@ export default createGlobalStyle`
       }
 
       #story-root {
-        display: flex;
         padding: 0 2.5rem;
 
         > button ~ button {
@@ -46,6 +45,10 @@ export default createGlobalStyle`
 
         > span ~ span {
           margin-left: 1.5rem;
+        }
+
+        > input ~ input {
+          margin-top: .5rem;
         }
       }
     }

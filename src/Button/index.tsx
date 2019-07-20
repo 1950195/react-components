@@ -32,7 +32,6 @@ export interface IButtonProps {
   color?: 'primary' | 'link';
   size?: 'lg' | 'sm';
   disabled?: boolean;
-  radius?: boolean;
   onClick?: ((event: React.MouseEvent<any, MouseEvent>) => void) | undefined;
   children: any;
 }
