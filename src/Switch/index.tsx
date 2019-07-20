@@ -9,18 +9,30 @@ const CustomSwitch = styled.span<ISwitchProps>`
   width: 32px;
   position: relative;
   display: inline-block;
-  border: 1px solid ${v('$grayscale-silverlight')};
   border-radius: 8px;
-  ${({ checked }) => checked && `background-color: ${v('$control-kaiju')}`}
+  ${({ checked, disabled }) => checked && !disabled
+    ? `background-color: ${v('$control-kaiju')}`
+    : `border: 1px solid ${v('$grayscale-silverlight')};`
+  }
   > span {
     position: absolute;
-    height: 12px;
-    width: 12px;
-    ${({ checked }) => checked ? `right: 1px;` : `left: 1px;`}
-    ${({ checked, disabled }) => (!checked || disabled) && `border: 1px solid ${v('$grayscale-silverlight')};`}
+    ${({ checked, disabled }) => checked && !disabled
+      ? `
+        height: 10px;
+        width: 10px;
+        right: 3px;
+        top: 3px;
+      `
+      : `
+        height: 12px;
+        width: 12px;
+        ${checked ? `right` : `left`}: 1px;
+        top: 1px;
+        border: 1px solid ${v('$grayscale-silverlight')};
+      `
+    }
     background-color: ${v('$grayscale-white')};
     border-radius: 50%;
-    top: 1px;
   }
   ${({ disabled }) => disabled
     ? `
