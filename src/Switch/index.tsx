@@ -1,5 +1,4 @@
-import React from 'react';
-import { Input } from 'reactstrap';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import v from 'style/v';
@@ -10,29 +9,34 @@ const CustomSwitch = styled.span<ISwitchProps>`
   position: relative;
   display: inline-block;
   border-radius: 8px;
+  background-color: ${v('$grayscale-white')};
+  transition: all .3s linear;
   ${({ checked, disabled }) => checked && !disabled
-    ? `background-color: ${v('$control-kaiju')}`
+    ? `
+      background-color: ${v('$control-kaiju')};
+      border: 1px solid ${v('$control-kaiju')};
+    `
     : `border: 1px solid ${v('$grayscale-silverlight')};`
   }
   > span {
     position: absolute;
-    ${({ checked, disabled }) => checked && !disabled
-      ? `
-        height: 10px;
-        width: 10px;
-        right: 3px;
-        top: 3px;
-      `
-      : `
-        height: 12px;
-        width: 12px;
-        ${checked ? `right` : `left`}: 1px;
-        top: 1px;
-        border: 1px solid ${v('$grayscale-silverlight')};
-      `
-    }
-    background-color: ${v('$grayscale-white')};
     border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    top: 1px;
+    background-color: ${v('$grayscale-white')};
+    border: 1px solid ${v('$grayscale-silverlight')};
+    ${({ checked, disabled }) => !disabled && `
+      transform: translateX(1px);
+      transition: transform .3s ease-in-out;
+      ${checked && `
+        transform: translateX(calc(150% - 1px));
+        border: 1px solid ${v('$control-kaiju')};
+      `}
+    `};
+    ${({ checked, disabled }) => disabled && `
+      ${checked ? `right` : `left`}: 1px;
+    `}
   }
   ${({ disabled }) => disabled
     ? `
@@ -41,26 +45,37 @@ const CustomSwitch = styled.span<ISwitchProps>`
     `
     : `cursor: pointer;`
   }
-  input[type=radio] {
-    display: none;
-  }
 `;
 
 export interface ISwitchProps {
   checked?: boolean;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (checked: boolean) => void;
 }
 
 export const Switch = ({
-  checked,
+  checked: checkedFromProp,
   disabled,
-  onChange,
+  handleChange,
 }: ISwitchProps) => {
+  const [checked, toggleChecked] = useState(checkedFromProp);
+
   return (
-    <CustomSwitch {...{ checked, disabled, onChange }}>
+    <CustomSwitch
+      {...{ checked, disabled }}
+      onClick={() => {
+        if (disabled) {
+          return;
+        }
+
+        toggleChecked(!checked);
+
+        if (handleChange) {
+          handleChange(!checked);
+        }
+      }}
+    >
       <span />
-      <Input type="radio" {...{ checked, disabled, onChange }} />
     </CustomSwitch>
   );
 };

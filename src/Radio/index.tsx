@@ -1,5 +1,4 @@
-import React from 'react';
-import { Input } from 'reactstrap';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from 'Icon';
@@ -12,6 +11,13 @@ const CustomRadio = styled.span<IRadioProps>`
   display: inline-block;
   border: 1px solid ${v('$grayscale-silverlight')};
   border-radius: 50%;
+  > :first-child {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+  }
   ${({ disabled }) => disabled
     ? `
       opacity: 0.65;
@@ -21,33 +27,43 @@ const CustomRadio = styled.span<IRadioProps>`
   }
   ${({ checked }) => checked && `
     > :first-child {
-      position: absolute;
-      top: -1px;
-      left: -1px;
+      opacity: 1;
+      animation: bounceout .25s;
     }
   `}
-  input[type=radio] {
-    display: none;
-  }
 `;
 
 export interface IRadioProps {
   checked?: boolean;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (checked: boolean) => void;
 }
 
 export const Radio = ({
-  checked,
+  checked: checkedFromProp,
   disabled,
-  onChange,
+  handleChange,
 }: IRadioProps) => {
+  const [checked, toggleChecked] = useState(checkedFromProp);
+
   return (
-    <CustomRadio {...{ checked, disabled, onChange }}>
-      {checked && !disabled && (
+    <CustomRadio
+      {...{ checked, disabled }}
+      onClick={() => {
+        if (disabled) {
+          return;
+        }
+
+        toggleChecked(!checked);
+
+        if (handleChange) {
+          handleChange(!checked);
+        }
+      }}
+    >
+      {!disabled && (
         <Icon name="dot-circle" color={v('$control-pacific')} />
       )}
-      <Input type="radio" {...{ checked, disabled, onChange }} />
     </CustomRadio>
   );
 };

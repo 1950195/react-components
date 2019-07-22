@@ -1,5 +1,4 @@
-import React from 'react';
-import { Input } from 'reactstrap';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from 'Icon';
@@ -11,6 +10,12 @@ const CustomCheckbox = styled.span<ICheckboxProps>`
   position: relative;
   display: inline-block;
   border: 1px solid ${v('$grayscale-silverlight')};
+  > :first-child {
+    position: absolute;
+    top: -1px;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+  }
   ${({ disabled }) => disabled
     ? `
       opacity: 0.65;
@@ -27,32 +32,43 @@ const CustomCheckbox = styled.span<ICheckboxProps>`
       border: 1px solid ${v('$control-pacific')};
     }
     > :first-child {
-      position: absolute;
-      top: -1px;
+      opacity: 1;
+      animation: bounceout .25s;
     }
   `}
-  input[type=checkbox] {
-    display: none;
-  }
 `;
 
 export interface ICheckboxProps {
   checked?: boolean;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (checked: boolean) => void;
 }
 
 export const Checkbox = ({
-  checked,
+  checked: checkedFromProp,
   disabled,
-  onChange,
+  handleChange,
 }: ICheckboxProps) => {
+  const [checked, toggleChecked] = useState(checkedFromProp);
+
   return (
-    <CustomCheckbox {...{ checked, disabled, onChange }}>
-      {checked && !disabled && (
+    <CustomCheckbox
+      {...{ checked, disabled }}
+      onClick={() => {
+        if (disabled) {
+          return;
+        }
+
+        toggleChecked(!checked);
+
+        if (handleChange) {
+          handleChange(!checked);
+        }
+      }}
+    >
+      {!disabled && (
         <Icon name="check-square" color={v('$control-pacific')} />
       )}
-      <Input type="checkbox" {...{ checked, disabled, onChange }} />
     </CustomCheckbox>
   );
 };

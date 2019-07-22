@@ -26,6 +26,14 @@ export default createGlobalStyle`
     }
   }
 
+  @keyframes bounceout {
+      0%  { transform:scale(0)}
+      25% { transform:scale(.8)}
+      50% { transform:scale(1.4)}
+      75% { transform:scale(1.2)}
+      100%{ transform:scale(1)}
+  }
+
   body.sb-show-main {
     #root {
       > div:first-of-type {
