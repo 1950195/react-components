@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import Icon from 'Icon';
+import { Input } from 'reactstrap';
 import v from 'style/v';
 
-const CustomRadio = styled.span<IRadioProps>`
+const circleSvg = encodeURIComponent(`
+  <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <circle fill="#fff" cx="8" cy="8" r="2.5" />
+  </svg>
+`);
+
+const CustomRadio = styled(Input)`
+  position: relative;
+  margin-left: 0;
+  display: inline-block;
   height: 16px;
   width: 16px;
-  position: relative;
-  display: inline-block;
+  overflow: hidden;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transition: background-color .2s ease-in-out;
   border: 1px solid ${v('$grayscale-silverlight')};
   border-radius: 50%;
-  > :first-child {
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    opacity: 0;
-    transition: opacity .25s ease-in-out;
-  }
+  outline: none;
   ${({ disabled }) => disabled
     ? `
       opacity: 0.65;
@@ -26,45 +31,47 @@ const CustomRadio = styled.span<IRadioProps>`
     : `cursor: pointer;`
   }
   ${({ checked }) => checked && `
-    > :first-child {
-      opacity: 1;
-      animation: bounceout .25s;
-    }
+    background-color: ${v('$control-pacific')};
+    background-image: url(data:image/svg+xml;charset=UTF-8,${circleSvg});
   `}
 `;
 
 export interface IRadioProps {
+  name: string;
   checked?: boolean;
   disabled?: boolean;
   handleChange?: (checked: boolean) => void;
 }
 
 export const Radio = ({
+  name,
   checked: checkedFromProp,
   disabled,
   handleChange,
 }: IRadioProps) => {
   const [checked, toggleChecked] = useState(checkedFromProp);
 
+  useEffect(() => {
+    toggleChecked(checkedFromProp);
+  }, [checkedFromProp]);
+
   return (
     <CustomRadio
-      {...{ checked, disabled }}
+      type="radio"
+      {...{ name, checked, disabled }}
       onClick={() => {
         if (disabled) {
           return;
         }
 
         toggleChecked(!checked);
-
+      }}
+      onChange={() => {
         if (handleChange) {
           handleChange(!checked);
         }
       }}
-    >
-      {!disabled && (
-        <Icon name="dot-circle" color={v('$control-pacific')} />
-      )}
-    </CustomRadio>
+    />
   );
 };
 

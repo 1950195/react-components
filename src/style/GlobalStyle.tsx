@@ -47,7 +47,9 @@ export default createGlobalStyle`
       #story-root {
         padding: 0 2.5rem;
 
-        > button ~ button {
+        > button ~ button,
+        > input[type=radio] ~ input[type=radio],
+        > input[type=checkbox] ~ input[type=checkbox] {
           margin-left: .5rem;
         }
 
@@ -55,7 +57,7 @@ export default createGlobalStyle`
           margin-left: 1.5rem;
         }
 
-        > input ~ input {
+        > input[type=text] ~ input[type=text] {
           margin-top: .5rem;
         }
       }

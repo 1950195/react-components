@@ -5,10 +5,10 @@ import Checkbox from '../Checkbox';
 
 storiesOf('Checkbox', module)
   .add('All', () => [
-    <Checkbox key="checkbox" />,
-    <Checkbox key="checkbox-checked" checked  />,
-    <Checkbox key="checkbox-disabled" disabled />,
+    <Checkbox key="checkbox" name="test" />,
+    <Checkbox key="checkbox-checked" name="test" checked  />,
+    <Checkbox key="checkbox-disabled" name="test" disabled />,
   ])
-  .add('default', () => <Checkbox />)
-  .add('default [checked]', () => <Checkbox checked />)
-  .add('default [disabled]', () => <Checkbox disabled />);
+  .add('default', () => <Checkbox name="test" />)
+  .add('default [checked]', () => <Checkbox name="test" checked />)
+  .add('default [disabled]', () => <Checkbox name="test" disabled />);
