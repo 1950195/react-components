@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Input } from 'reactstrap';
 import v from 'style/v';
-
-const circleSvg = encodeURIComponent(`
-  <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-    <circle fill="#fff" cx="8" cy="8" r="2.5" />
-  </svg>
-`);
+import { encodeIcon } from 'Icon';
 
 const CustomRadio = styled(Input)`
   position: relative;
@@ -19,6 +14,7 @@ const CustomRadio = styled(Input)`
   appearance: none;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  background-size: 43.75%;
   transition: background-color .2s ease-in-out;
   border: 1px solid ${v('$grayscale-silverlight')};
   border-radius: 50%;
@@ -32,7 +28,7 @@ const CustomRadio = styled(Input)`
   }
   ${({ checked }) => checked && `
     background-color: ${v('$control-pacific')};
-    background-image: url(data:image/svg+xml;charset=UTF-8,${circleSvg});
+    background-image: ${encodeIcon({ name: 'circle', color: '#fff' })};
   `}
 `;
 

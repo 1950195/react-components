@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, IconName, IconLookup, IconDefinition, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -21,3 +22,8 @@ export const Icon = ({
 };
 
 export default Icon;
+
+export const encodeIcon = ({ name, color }: IIconProps) =>
+  `url(data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+    ReactDOMServer.renderToStaticMarkup(<Icon {...{ name, color }} />),
+  )})`;

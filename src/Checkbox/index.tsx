@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Input } from 'reactstrap';
 import v from 'style/v';
-
-const checkSvg = encodeURIComponent(`
-  <svg width="14" height="11" viewBox="0 0 14 11" xmlns="http://www.w3.org/2000/svg">
-    <polygon fill="#fff" points="12 1 5 7.5 2 5 1 5.5 5 10 13 1.5" />
-  </svg>
-`);
+import { encodeIcon } from 'Icon';
 
 const CustomCheckbox = styled(Input)`
   position: relative;
@@ -19,6 +14,7 @@ const CustomCheckbox = styled(Input)`
   appearance: none;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  background-size: 80%;
   transition: background-color .2s ease-in-out;
   border: 1px solid ${v('$grayscale-silverlight')};
   outline: none;
@@ -31,7 +27,7 @@ const CustomCheckbox = styled(Input)`
   }
   ${({ checked }) => checked && `
     background-color: ${v('$control-pacific')};
-    background-image: url(data:image/svg+xml;charset=UTF-8,${checkSvg});
+    background-image: ${encodeIcon({ name: 'check', color: '#fff' })};
   `}
 `;
 
